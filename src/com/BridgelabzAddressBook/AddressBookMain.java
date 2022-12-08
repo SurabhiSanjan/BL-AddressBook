@@ -1,7 +1,7 @@
 package com.BridgelabzAddressBook;
 import java.util.*;
 
-// to add contacts to the addressbook
+// to Delete contacts from the addressbook
 public class AddressBookMain {
     static ArrayList<Contact> list = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
@@ -26,7 +26,14 @@ public class AddressBookMain {
         for (Object object : list) {
             System.out.println(object);
         }
-        System.out.println("The contact is edited successfully");
+
+        System.out.println("Please enter the first name to deleter contact details: ");
+        String firstNameToEdit1 = sc.next();
+        deleteContacts(firstNameToEdit1);
+        for (Object object : list) {
+            System.out.println(object);
+        }
+        System.out.println("The contact is Modified successfully");
         sc.close();
     }
     private static void addingContacts(int num) {
@@ -69,4 +76,18 @@ public class AddressBookMain {
 
     }
 
+    private static void deleteContacts(String firstNameToEdit1) {
+        boolean found = true;
+        for (Contact object : list) {
+            if (firstNameToEdit1.equals(object.getFirstName())) {
+                list.remove(object);
+                System.out.println("Contact is deleted successfully!");
+                found = false;
+                break;
+            }
+        }
+        if (found) {
+            System.out.println("Contact not found");
+        }
+    }
 }
