@@ -1,6 +1,7 @@
 package com.BridgelabzAddressBook;
-
+import java.util.Scanner;
 public class Contact {
+    static Scanner scanner = new Scanner(System.in);
     private String firstName;
     private String lastName;
     private String email;
@@ -74,6 +75,25 @@ public class Contact {
         this.address = address;
     }
 
+    public void editingContact(){
+
+        System.out.println("Please enter the first name: ");
+        setFirstName(scanner.next());
+        System.out.println("Please enter the last name: ");
+        setLastName(scanner.next());
+        System.out.println("Please enter the Address: ");
+        setAddress(scanner.next());
+        System.out.println("Please enter the city: ");
+        setCity(scanner.next());
+        System.out.println("Please enter the state: ");
+        setState(scanner.next());
+        System.out.println("Please enter the zip: ");
+        setZip(scanner.next());
+        System.out.println("Please enter the Phone Number: ");
+        setPhoneNumber(scanner.next());
+        System.out.println("Please enter the email: ");
+        setEmail(scanner.next());
+    }
     public String toString() {
         return "Contact Details {" +
                 "firstName= " + firstName + ", " +
