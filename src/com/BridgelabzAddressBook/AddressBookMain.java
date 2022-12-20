@@ -6,34 +6,71 @@ public class AddressBookMain {
     static ArrayList<Contact> list = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Welcome to Address Book Program");
-
         System.out.println("Enter the number of contact entries to be stored");
-        int num=sc.nextInt();
-        Contact cd = new Contact();
-        addingContacts(num);
-        System.out.println("All the contacts are added successfully!");
-        // Displaying added contacts
-        for (Contact object : list) {
-            System.out.println(object);
-        }
-        // editing the contacts
-        System.out.println("Please enter the first name to edit Contact details: ");
-        String firstNameToEdit = sc.next();
-        editContacts(firstNameToEdit);
-        System.out.println();
-        // Displaying added contacts
-        for (Object object : list) {
-            System.out.println(object);
+
+        boolean stopper = true;
+        while (stopper) {
+            System.out.println("Please enter the following details: ");
+            System.out.println("1. Add");
+            System.out.println("2. Remove");
+            System.out.println("3. Edit");
+            System.out.println("4. display");
+            System.out.println("5. Exit");
+
+            int input = sc.nextInt();
+            System.out.println("Input is: " + input);
+            switch (input) {
+                case 1: {
+                    // Adding new contacts to address book
+                    System.out.println("Enter the number of contacts you would like to enter?");
+                    int numberOfContacts = sc.nextInt();
+                    addingContacts(numberOfContacts);
+                    System.out.println("All the contacts are added successfully!");
+                    break;
+
+                }
+                case 2: {
+                    // UC3: Editing the contacts which you have added
+                    System.out.println("Please enter the first name of the added contact to edit: ");
+                    String firstNameToEdit = sc.next();
+                    editContacts(firstNameToEdit);
+                    break;
+                }
+                case 3: {
+                    // UC4: Deleting the Record with the First name
+                    System.out.println("Please enter the first name of the added contact to Delete: ");
+                    String firstNameToEdit1 = sc.next();
+                    deleteContacts(firstNameToEdit1);
+                    break;
+                }
+                case 4: {
+                    // Displaying added contacts
+                    if (list.isEmpty()) {
+                        System.out.println("No contacts are added in the Address Book! \n "
+                                + "please enter the the contacts in the Address Book");
+                    }
+                    else {
+                        for (Object object : list) {
+                            System.out.println("Below are your added contact:");
+                            System.out.println(object);
+                        }
+                    }
+                    System.out.println("----------------------------------------------------------");
+                    break;
+                }
+                case 5: {
+                    stopper = false;
+                    System.out.println("Thank you for using Address Book Program!");
+                    System.exit(input);
+                }
+
+                default:
+                    System.out.println("Thank you for using Address Book Program!");
+                    stopper = false;
+                    throw new IllegalArgumentException("Unexpected value: " + input);
+            }
         }
 
-        System.out.println("Please enter the first name to deleter contact details: ");
-        String firstNameToEdit1 = sc.next();
-        deleteContacts(firstNameToEdit1);
-        for (Object object : list) {
-            System.out.println(object);
-        }
-        System.out.println("The contact is Modified successfully");
         sc.close();
     }
     private static void addingContacts(int num) {
